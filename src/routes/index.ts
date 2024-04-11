@@ -3,6 +3,8 @@ import { Express, Request, Response } from 'express'
 import usuarios from './UsuarioRouter'
 import login from './LoginRouter'
 import setor from './SetorRouter'
+import bens from './BemRouter'
+import imagem from './ImagemRouter'
 
 dotenv.config()
 
@@ -14,7 +16,9 @@ const routes = (app: Express) => {
     app.use(
         login,
         usuarios,
-        setor
+        setor,
+        bens,
+        imagem
     );
 };
 

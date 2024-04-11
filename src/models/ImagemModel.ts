@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-interface IImagem extends mongoose.Document {
+ interface IImagem extends mongoose.Document {
   tipo_arquivo: string;
   enviado_por: mongoose.Types.ObjectId;
   caminho: string;

@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import paginate from "mongoose-paginate-v2";
 
-interface IBem extends mongoose.Document {
+export interface IBem extends mongoose.Document {
     tombo: number;
     indentificado: boolean;
     localizado: boolean;

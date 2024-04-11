@@ -26,7 +26,7 @@ export default class LoginController {
                 return res.status(401).json(Http[401]);
             }
 
-            const token = jwt.sign({ matricula: usuario.matricula, email: usuario.email, nome: usuario.nome }, secret, {
+            const token = jwt.sign({ email }, secret, {
                 expiresIn: "1h"
             });
 
