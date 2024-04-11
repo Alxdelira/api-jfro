@@ -23,7 +23,7 @@
     >
     <img 
       alt="Project top programing language" 
-      src="https://img.shields.io/github/languages/top/Alxdelira/pass-generate-app?color=6A57D5"
+      src="https://img.shields.io/github/languages/top/Alxdelira/api-jfro?color=6A57D5"
     >
     <!-- <img 
       alt="Repository size" 
@@ -31,7 +31,7 @@
     > -->
     <img 
       alt="GitHub license" 
-      src="https://img.shields.io/github/license/Alxdelira/pass-generate-app?color=6A57D5"
+      src="https://img.shields.io/github/license/Alxdelira/api-jfro?color=6A57D5"
     >
   </p> 
 
@@ -57,17 +57,17 @@
   </p>
 </div>
 
-## Preview
+<!-- ## Preview
 
 <div align="center">
   <a href="#">
       <img src="./assets/modelo.png" width="200" alt="preview" />
   </a>
-</div>
+</div> -->
 
-## 🔥 Features
+<!-- ## 🔥 Features
 - [x] Generate a random Strong Password;
-- [x] Copy Pass to Clipboard;
+- [x] Copy Pass to Clipboard; -->
 
 ## Technologies
 
@@ -84,10 +84,10 @@ This project was developed with the following technologies:
 You'll need [Node.js](https://nodejs.org) installed on your computer in order to build this app.
 
 ```bash
-git git@github.com:Alxdelira/pass-generate-app.git
-$ cd pass-generate-app
+git https://github.com/Alxdelira/api-jfro.git
+$ cd api-jfro
 $ npm install
-$ npm run start
+$ npm run dev
 ```
 
 
@@ -96,7 +96,7 @@ $ npm run start
 🔧 Run the script
 
 ```bash
-$ npm run start
+$ npm run dev
 ```
 
 
