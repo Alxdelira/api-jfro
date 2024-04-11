@@ -8,13 +8,13 @@
  <!--
    <img 
       alt="Project programing languages count" 
-      src="https://img.shields.io/github/languages/count/felipeAguiarCode/node-js-bulk-downloader?color=6A57D5"
+      src="https://img.shields.io/github/languages/count/?color=6A57D5"
     >
  -->
   <!--
     <img 
       alt="Last commit on GitHub" 
-      src="https://img.shields.io/github/last-commit/felipeAguiarCode/node-js-bulk-downloader?color=6A57D5"
+      src="https://img.shields.io/github/last-commit/?color=6A57D5"
     >
   -->
     <img 
@@ -25,10 +25,6 @@
       alt="Project top programing language" 
       src="https://img.shields.io/github/languages/top/Alxdelira/api-jfro?color=6A57D5"
     >
-    <!-- <img 
-      alt="Repository size" 
-      src="https://img.shields.io/github/repo-size/Alxdelira/pass-generate-app?color=6A57D5"
-    > -->
     <img 
       alt="GitHub license" 
       src="https://img.shields.io/github/license/Alxdelira/api-jfro?color=6A57D5"
@@ -73,9 +69,16 @@
 
 This project was developed with the following technologies:
 
--   [Express](https://reactnative.dev/)
--   [Mongoose](https://docs.expo.dev/)
--   [JWT]()
+- `nodemon`: [nodemon on GitHub](https://github.com/remy/nodemon)
+- `typescript`: [TypeScript on GitHub](https://github.com/microsoft/TypeScript)
+- `bcrypt`: [bcrypt.js on GitHub](https://github.com/dcodeIO/bcrypt.js)
+- `cors`: [npm cors](https://www.npmjs.com/package/cors)
+- `dotenv`: [dotenv on GitHub](https://github.com/motdotla/dotenv)
+- `express`: [Express.js on GitHub](https://github.com/expressjs/express)
+- `jsonwebtoken`: [jsonwebtoken on GitHub](https://github.com/auth0/node-jsonwebtoken)
+- `mongoose`: [Mongoose on GitHub](https://github.com/Automattic/mongoose)
+- `mongoose-paginate-v2`: [npm mongoose-paginate-v2](https://www.npmjs.com/package/mongoose-paginate-v2)
+- `ts-node-dev`: [ts-node-dev on GitHub](https://github.com/wclr/ts-node-dev)
 
 
 
@@ -84,7 +87,7 @@ This project was developed with the following technologies:
 You'll need [Node.js](https://nodejs.org) installed on your computer in order to build this app.
 
 ```bash
-git https://github.com/Alxdelira/api-jfro.git
+git clone https://github.com/Alxdelira/api-jfro.git
 $ cd api-jfro
 $ npm install
 $ npm run dev
