@@ -9,14 +9,11 @@
    <img 
       alt="Project programing languages count" 
       src="./src/assets/logo.png"
-    >
-
-  <!--
+    >  
     <img 
       alt="Last commit on GitHub" 
       src="https://img.shields.io/github/last-commit/?color=6A57D5"
-    >
-  -->
+    >   
     <img 
       alt="Made by Alexandre Nogueira" 
       src="https://img.shields.io/badge/made%20by-Alexandre%20Nogueira-%20?color=6A57D5"
