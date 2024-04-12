@@ -56,9 +56,20 @@
   </a>
 </div> -->
 
-<!-- ## 🔥 Features
-- [x] Generate a random Strong Password;
-- [x] Copy Pass to Clipboard; -->
+## 🔥 Features
+- [x] Autenticação de usuários para acesso seguro à API;
+- [x] Gerenciamento completo de usuários, incluindo adição, atualização, visualização e exclusão;
+- [x] Capacidade de armazenar e manipular imagens de ativos associadas aos itens do inventário;
+- [ ] Organização hierárquica de setores e sub-setores para uma gestão eficiente de inventários complexos;
+- [x] Operações de CRUD (criar, ler, atualizar, excluir) para itens de inventário, permitindo um controle preciso sobre os ativos;
+- [ ] Suporte para geração de relatórios personalizados com informações detalhadas sobre o inventário;
+- [x] API RESTful com documentação clara e abrangente para facilitar a integração e o desenvolvimento de aplicativos clientes;
+- [ ] Funcionalidade de rastreamento de histórico para acompanhar as alterações nos itens do inventário ao longo do tempo;
+- [x] Capacidade de realizar auditorias de inventário para garantir a precisão e integridade dos dados;
+- [ ] Notificações em tempo real para alertar sobre eventos importantes relacionados ao inventário, como mudanças de status ou itens próximos à data de vencimento;
+- [ ] Funcionalidade de análise e previsão para identificar tendências e otimizar o gerenciamento de inventário com base em dados históricos e atuais.
+
+
 
 ## Technologies
 
