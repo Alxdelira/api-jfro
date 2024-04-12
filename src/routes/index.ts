@@ -10,7 +10,7 @@ dotenv.config()
 
 const routes = (app: Express) => {
     app.route('/').get((req : Request, res: Response) => {
-        res.status(200).json({ message: `Servidor rodando na porta: ${process.env.PORT}` })
+        res.status(200).redirect("/docs")
     });
 
     app.use(

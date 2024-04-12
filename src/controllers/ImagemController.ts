@@ -2,6 +2,7 @@ import fs from "fs";
 import { Request, Response, NextFunction } from "express";
 import ImagemModel from "../models/ImagemModel";
 import Http from "../services/HttpStatus";
+import UsuarioModel from "../models/UsuarioModel";
 
 interface IImagem {
     tipo_arquivo: string;
@@ -21,7 +22,7 @@ class ImagensControllers {
         }
 
         const arquivo = req.file;
-        const usuarioId = (req as any).usuario?._id?.id;
+        const usuarioId = (req as any).usuario?._id?.id;        
 
         if (!usuarioId) {
             return res.status(401).json({
