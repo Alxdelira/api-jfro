@@ -5,12 +5,12 @@
   
   <!-- project badges -->
   <p align="center">
- <!--
+ 
    <img 
       alt="Project programing languages count" 
-      src="https://img.shields.io/github/languages/count/?color=6A57D5"
+      src="./src/assets/logo.png"
     >
- -->
+
   <!--
     <img 
       alt="Last commit on GitHub" 
@@ -81,6 +81,7 @@ This project was developed with the following technologies:
 - `ts-node-dev`: [ts-node-dev on GitHub](https://github.com/wclr/ts-node-dev)
 - `Swagger`: [swagger-UI on  GitHub](https://github.com/swagger-api/swagger-ui)
 - `Multer`: [Express.Js - multer](https://github.com/expressjs/multer)
+- `Mongo DB Atlas`: [MongoDB - Atlas](https://www.mongodb.com/pt-br)
 
 
 

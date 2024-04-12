@@ -9,8 +9,6 @@ interface ISetor {
     status: boolean;
 }
 
-
-
 export default class SetorController {
     static criarSetor = async (req: Request, res: Response) => {
         try {
@@ -41,10 +39,12 @@ export default class SetorController {
 
     static listarSetores = async (req: Request, res: Response) => {
         try {
-            const { local, page, perPage } = req.query;
+            const { local, itens, page, perPage } = req.query;
 
             const query = buildQuery({
-                local: local?.toString()
+                local: local?.toString(),
+                itens: itens?.toString()
+
             });
             const options = getPaginationOptions(page?.toString(), perPage?.toString());
 

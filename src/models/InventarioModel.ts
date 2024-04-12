@@ -43,6 +43,6 @@ const InventarioSchema: Schema = new mongoose.Schema({
 // Configurações do modelo para que seja usada para buscar dados de usuário de forma paginada em nossa aplicação
 InventarioSchema.plugin(paginate);
 
-const inventario = mongoose.model<IInventario>("inventarios", InventarioSchema) as mongoose.PaginateModel<IInventario>;
+const InventarioModel = mongoose.model<IInventario>("inventarios", InventarioSchema) as mongoose.PaginateModel<IInventario>;
 
-export default inventario;
+export default InventarioModel;

@@ -5,6 +5,7 @@ import login from './LoginRouter'
 import setor from './SetorRouter'
 import bens from './BemRouter'
 import imagem from './ImagemRouter'
+import inventarios from './InventarioRouter'
 
 dotenv.config()
 
@@ -18,7 +19,8 @@ const routes = (app: Express) => {
         usuarios,
         setor,
         bens,
-        imagem
+        imagem,
+        inventarios
     );
 };
 

@@ -20,6 +20,13 @@ export default class BensController {
 
             const novoBem = new BemModel({
                 tombo,
+                nome,
+                descricao,
+                inventario,
+                setor,
+                auditor,
+                responsavel,
+                imagem
 
             });
 
@@ -27,7 +34,7 @@ export default class BensController {
                 !tombo ||
                 !nome ||
                 !setor ||
-                !responsavel 
+                !responsavel
             ) {
                 return res.status(400).json(Http[400]);
             }
@@ -42,16 +49,28 @@ export default class BensController {
 
     static listarBens = async (req: Request, res: Response) => {
         try {
-            const { nome, page, perPage } = req.query;
+            const {
+                tombo,
+                nome,
+                inventario,
+                setor,
+                auditor,
+                responsavel,
+                page, perPage } = req.query;
 
             const query = buildQuery({
-                nome: nome?.toString()
+                nome: nome?.toString(),
+                tombo: tombo?.toString(),
+                inventario: inventario?.toString(),
+                setor: setor?.toString(),
+                auditor: auditor?.toString(),
+                responsavel: responsavel?.toString()
             });
             const options = getPaginationOptions(page?.toString(), perPage?.toString());
 
             const bens = await BemModel.paginate(query, options);
             if (bens.docs.length === 0) {
-                return res.status(404).json({ mensage: 'Nenhum bem encontrado!' });
+                return res.status(404).json({ mensage: Http[404] });
             }
 
             return res.status(200).json(bens);
@@ -66,7 +85,7 @@ export default class BensController {
 
             const bem = await BemModel.findById(id);
             if (!bem) {
-                return res.status(404).json({ mensage: 'Bem não encontrado!' });
+                return res.status(404).json({ mensage: Http[404] });
             }
 
             return res.status(200).json(bem);
@@ -78,27 +97,30 @@ export default class BensController {
     static atualizarBem = async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            const { nome, condicao, ativo, uso, descricao, inventario, setor, auditor, responsavel, imagem }: IBem = req.body;
+            const { tombo, nome, condicao, ativo, uso, descricao, inventario, setor, auditor, responsavel, imagem }: IBem = req.body;
 
             const bem = await BemModel.findById(id);
             if (!bem) {
-                return res.status(404).json({ mensage: 'Bem não encontrado!' });
+                return res.status(404).json({ mensage: Http[404] });
             }
 
-            await BemModel.findByIdAndUpdate(id, {
-                nome,
-                condicao,
-                ativo,
-                uso,
-                descricao,
-                inventario,
-                setor,
-                auditor,
-                responsavel,
-                imagem
-            });
+            let camposAtualizados: Partial<IBem> = {}
 
-            return res.status(200).json({ mensage: 'Bem atualizado com sucesso!' });
+            if (tombo) camposAtualizados.tombo = tombo;
+            if (nome) camposAtualizados.nome = nome;
+            if (condicao) camposAtualizados.condicao = condicao;
+            if (ativo !== undefined) camposAtualizados.ativo = ativo;
+            if (uso) camposAtualizados.uso = uso;
+            if (descricao) camposAtualizados.descricao = descricao;
+            if (inventario) camposAtualizados.inventario = inventario;
+            if (setor) camposAtualizados.setor = setor;
+            if (auditor) camposAtualizados.auditor = auditor;
+            if (responsavel) camposAtualizados.responsavel = responsavel;
+            if (imagem) camposAtualizados.imagem = imagem;
+
+            const bemAtualizado = await BemModel.findByIdAndUpdate(id, camposAtualizados, { new: true });            
+           
+            return res.status(200).json(bemAtualizado);
         } catch (error) {
             return res.status(500).json({ error, mensage: Http[500] });
         }
@@ -110,7 +132,7 @@ export default class BensController {
 
             const bem = await BemModel.findById(id);
             if (!bem) {
-                return res.status(404).json({ mensage: 'Bem não encontrado!' });
+                return res.status(404).json({ mensage: Http[404] });
             }
 
             await BemModel.findByIdAndDelete(id);

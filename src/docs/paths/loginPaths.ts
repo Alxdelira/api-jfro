@@ -1,6 +1,6 @@
 import Http from "../../services/HttpStatus";
 
- export const loginPaths = {
+export const loginPaths = {
     "/login": {
         post: {
             tags: ["Login"],
@@ -38,24 +38,20 @@ import Http from "../../services/HttpStatus";
                                         type: "string",
                                         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZGU3ODBlMWRmZWZiMWUyN2ViMmQ5MSIsIm5vbWUiOiJEZXYgT2xpdmVpcmEiLCJlbWFpbCI6ImRldkBnbWFpbC5jb20iLCJhdGl2byI6dHJ1ZSwiaWF0IjoxNzA5NTk4OTExLCJleHAiOjE3MTA4OTQ5MTF9.KvhEcRDZ37XZsv9J9FcqEGFlDYvC_imuT32PulE3sbA",
                                     },
-                                    user: {
+                                    usuario: {
                                         type: "object",
                                         properties: {
-                                            id: {
-                                                type: "id",
-                                                example: "65de780e1dfefb1e27eb2d91"
-                                            },
                                             nome: {
                                                 type: "string",
-                                                example: "Dev Oliveira"
+                                                example: "John Doe"
                                             },
                                             email: {
                                                 type: "string",
                                                 example: "dev@gmail.com"
                                             },
-                                            ativo: {
-                                                type: "boolean",
-                                                example: true
+                                            matricula: {
+                                                type: "string",
+                                                example: "RO007"
                                             }
                                         }
                                     },
@@ -162,7 +158,7 @@ import Http from "../../services/HttpStatus";
                     }
                 }
             }
-        },
+        }
     }
 };
 

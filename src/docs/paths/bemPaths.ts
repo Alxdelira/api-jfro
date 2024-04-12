@@ -182,7 +182,7 @@ export const bensPaths = {
                 },
             },
         },
-        put: {
+        patch: {
             tags: ["Bens"],
             summary: "Atualiza um bem",
             description: "Atualiza um bem específico pelo número do tombo.",
