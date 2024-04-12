@@ -12,7 +12,7 @@
     >  
     <img 
       alt="Last commit on GitHub" 
-      src="https://img.shields.io/github/last-commit/?color=6A57D5"
+      src="https://img.shields.io/github/last-commit/Alxdelira/api-jfro?color=6A57D5"
     >   
     <img 
       alt="Made by Alexandre Nogueira" 
