@@ -1,15 +1,13 @@
 <div align="center">
- 
+ <img 
+      alt="Project programing languages count" 
+      src="./src/assets/logo.png"
+    >  
   <!-- project name -->
   <h1 align="center">API Contagem Patrimonial</h1>
   
   <!-- project badges -->
-  <p align="center">
- 
-   <img 
-      alt="Project programing languages count" 
-      src="./src/assets/logo.png"
-    >  
+  <p align="center">   
     <img 
       alt="Last commit on GitHub" 
       src="https://img.shields.io/github/last-commit/Alxdelira/api-jfro?color=6A57D5"
