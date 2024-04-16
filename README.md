@@ -118,4 +118,4 @@ Runs the app in the development mode.<br/>
 
 | [<img width="150px"  src="https://avatars.githubusercontent.com/u/102405026?v=4"><br><sub>Alexandre Nogueira</sub>](https://github.com/Alxdelira) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: |
-|                                             [Linkedin](www.linkedin.com/in/alxdelira)                                             |
+<a target="_blank" href="https://www.linkedin.com/in/alxdelira/"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
