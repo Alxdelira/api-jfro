@@ -4,18 +4,16 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const dbUrl: string = process.env.DB_URL || "";
+const dbOptions: ConnectOptions = {};
 
 (async () => {
-    await mongoose.connect(dbUrl, {
-        useUnifiedTopology: true,
-    } as ConnectOptions).then(() => {
+    try {
+        await mongoose.connect(dbUrl, dbOptions);
         console.log("Connected to MongoDB");
-    }
-    ).catch((error : any) =>  {
+    } catch (error) {
         console.log("Error connecting to MongoDB", error);
-    });
+    }
 })();
-
 
 let db = mongoose.connection;
 

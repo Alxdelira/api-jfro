@@ -2,9 +2,10 @@
  <img 
       alt="Project programing languages count" 
       src="./src/assets/logo.png"
+      width="200px"
     >  
   <!-- project name -->
-  <h1 align="center">API Contagem Patrimonial</h1>
+  <h1 align="center">API de Inventario</h1>
   
   <!-- project badges -->
   <p align="center">   
@@ -84,7 +85,7 @@ This project was developed with the following technologies:
 - `jsonwebtoken`: [jsonwebtoken on GitHub](https://github.com/auth0/node-jsonwebtoken)
 - `mongoose`: [Mongoose on GitHub](https://github.com/Automattic/mongoose)
 - `mongoose-paginate-v2`: [npm mongoose-paginate-v2](https://www.npmjs.com/package/mongoose-paginate-v2)
-- `ts-node-dev`: [ts-node-dev on GitHub](https://github.com/wclr/ts-node-dev)
+- `tsup`: [tsup on NPM](https://www.npmjs.com/package/tsup)
 - `Swagger`: [swagger-UI on  GitHub](https://github.com/swagger-api/swagger-ui)
 - `Multer`: [Express.Js - multer](https://github.com/expressjs/multer)
 - `Mongo DB Atlas`: [MongoDB - Atlas](https://www.mongodb.com/pt-br)
@@ -99,7 +100,7 @@ You'll need [Node.js](https://nodejs.org) installed on your computer in order to
 git clone https://github.com/Alxdelira/api-jfro.git
 $ cd api-jfro
 $ npm install
-$ npm run dev
+$ npm run dist
 ```
 
 
@@ -119,3 +120,15 @@ Runs the app in the development mode.<br/>
 | [<img width="150px"  src="https://avatars.githubusercontent.com/u/102405026?v=4"><br><sub>Alexandre Nogueira</sub>](https://github.com/Alxdelira) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: |
 <a target="_blank" href="https://www.linkedin.com/in/alxdelira/"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<p align="center">
+  <a href="https://portfolioalxdelira.vercel.app/" target="_blank">
+    <img align="center" src="src/assets/footer.png" alt="banner"/>
+  </a>
+</p>
