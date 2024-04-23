@@ -10,7 +10,7 @@ interface ISetor {
 }
 
 export default class SetorController {
-    static criarSetor = async (req: Request, res: Response) => {
+    static criarSetor = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { local, itens, status }: ISetor = req.body;
 
@@ -37,7 +37,7 @@ export default class SetorController {
         }
     }
 
-    static listarSetores = async (req: Request, res: Response) => {
+    static listarSetores = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { local, itens, page, perPage } = req.query;
 
@@ -59,7 +59,7 @@ export default class SetorController {
         }
     }
 
-    static buscarSetor = async (req: Request, res: Response) => {
+    static buscarSetor = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
 
@@ -74,7 +74,7 @@ export default class SetorController {
         }
     }
 
-    static atualizarSetor = async (req: Request, res: Response) => {
+    static atualizarSetor = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
             const { local, itens, status }: ISetor = req.body;
@@ -98,7 +98,7 @@ export default class SetorController {
         }
     }
 
-    static deletarSetor = async (req: Request, res: Response) => {
+    static deletarSetor = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
 

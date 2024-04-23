@@ -6,7 +6,7 @@ dotenv.config();
 const dbUrl: string = process.env.DB_URL || "";
 const dbOptions: ConnectOptions = {};
 
-(async () => {
+(async (): Promise<void> => {
     try {
         await mongoose.connect(dbUrl, dbOptions);
         console.log("Connected to MongoDB");

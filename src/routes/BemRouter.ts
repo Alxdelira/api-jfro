@@ -1,7 +1,7 @@
-import express from 'express';
+import express, { Router } from 'express';
 import BensController from '../controllers/BensControllers';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router
 .post('/bens', BensController.criarBem)

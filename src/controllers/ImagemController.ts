@@ -2,7 +2,6 @@ import fs from "fs";
 import { Request, Response, NextFunction } from "express";
 import ImagemModel from "../models/ImagemModel";
 import Http from "../services/HttpStatus";
-import UsuarioModel from "../models/UsuarioModel";
 
 interface IImagem {
     tipo_arquivo: string;

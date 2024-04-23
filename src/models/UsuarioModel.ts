@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 import paginate from "mongoose-paginate-v2";
 
-interface IUsuario extends Document {
+export interface IUsuario extends Document {
     nome: string;
     matricula: string;
     email: string;
