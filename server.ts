@@ -8,7 +8,11 @@ dotenv.config();
 
 const port = process.env.PORT || 3010;
 
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerOptions)));
+const CSS_URL: string = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.7/swagger-ui.min.css";
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, { swaggerOptions: { url: '/docs/swagger.json' }, customCss: CSS_URL }));
 
 app.listen(port, () => {
     console.log(`Server running on port http://localhost:${port}`);
