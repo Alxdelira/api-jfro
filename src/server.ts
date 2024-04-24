@@ -12,7 +12,7 @@ const CSS_URL: string = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, { swaggerOptions: { url: '/docs/swagger.json' }, customCss: CSS_URL }));
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, { swaggerOptions: { url: '/docs/swagger.json' }, customCssUrl: CSS_URL }));
 
 app.listen(port, () => {
     console.log(`Server running on port http://localhost:${port}`);
