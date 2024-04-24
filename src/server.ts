@@ -1,8 +1,8 @@
-import app from "./src/app";
+import app from "./app";
 import * as dotenv from 'dotenv';
 import swaggerUi from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
-import swaggerOptions from "./src/docs/head";
+import swaggerOptions from "./docs/head";
 
 dotenv.config();
 
