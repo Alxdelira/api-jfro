@@ -2492,8 +2492,8 @@ var head_default = swaggerOptions;
 dotenv5.config();
 var port = process.env.PORT || 3010;
 var CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.7/swagger-ui.min.css";
-var swaggerSpec = (0, import_swagger_jsdoc.default)(head_default);
-app_default.use("/docs", import_swagger_ui_express.default.serve, import_swagger_ui_express.default.setup(swaggerSpec, { swaggerOptions: { url: "/docs/swagger.json" }, customCssUrl: CSS_URL }));
+var swaggerDocs = (0, import_swagger_jsdoc.default)(head_default);
+app_default.use("/docs", import_swagger_ui_express.default.serve, import_swagger_ui_express.default.setup(swaggerDocs, { customCssUrl: CSS_URL }));
 app_default.listen(port, () => {
   console.log(`Server running on port http://localhost:${port}`);
 });
