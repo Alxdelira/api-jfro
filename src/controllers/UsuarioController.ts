@@ -14,7 +14,7 @@ interface IUsuario {
 }
 
 export default class UsuarioController {
-    static criarUsuario = async (req: Request, res: Response) => {
+    static criarUsuario = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { nome, email, matricula, senha }: IUsuario = req.body;
 
@@ -52,7 +52,7 @@ export default class UsuarioController {
         }
     }
 
-    static listarUsuarios = async (req: Request, res: Response) => {
+    static listarUsuarios = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { nome, email, matricula, page, perPage } = req.query;
 
@@ -74,7 +74,7 @@ export default class UsuarioController {
         }
     }
 
-    static buscarUsuario = async (req: Request, res: Response) => {
+    static buscarUsuario = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
 
@@ -90,7 +90,7 @@ export default class UsuarioController {
         }
     }
 
-    static alterarUsuario = async (req: Request, res: Response) => {
+    static alterarUsuario = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
             const { nome, email, matricula, senha, ativo } = req.body;
@@ -117,7 +117,7 @@ export default class UsuarioController {
         }
     }
 
-    static deletarUsuario = async (req: Request, res: Response) => {
+    static deletarUsuario = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
 

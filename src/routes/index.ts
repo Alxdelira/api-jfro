@@ -9,8 +9,8 @@ import inventarios from './InventarioRouter'
 
 dotenv.config()
 
-const routes = (app: Express) => {
-    app.route('/').get((req : Request, res: Response) => {
+const routes = (app: Express): void => {
+    app.route('/').get((req : Request, res: Response): void => {
         res.status(200).redirect("/docs")
     });
 

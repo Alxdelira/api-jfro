@@ -12,7 +12,7 @@ interface IInventario {
 }
 
 export default class InventarioController {
-    static criarInventario = async (req: Request, res: Response) => {
+    static criarInventario = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { setor, responsavel, auditores, data_inicio, data_fim }: IInventario = req.body;
 
@@ -36,7 +36,7 @@ export default class InventarioController {
         }
     }
 
-    static listarInventarios = async (req: Request, res: Response) => {
+    static listarInventarios = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { setor, responsavel, auditores, data_inicio, data_fim, page, perPage } = req.query;
 
@@ -60,7 +60,7 @@ export default class InventarioController {
         }
     }
 
-    static buscarInventario = async (req: Request, res: Response) => {
+    static buscarInventario = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
 
@@ -75,7 +75,7 @@ export default class InventarioController {
         }
     }
 
-    static atualizarInventario = async (req: Request, res: Response) => {
+    static atualizarInventario = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
             const { setor, responsavel, auditores, data_inicio, data_fim }: IInventario = req.body;
@@ -99,7 +99,7 @@ export default class InventarioController {
         }
     }
 
-    static deletarInventario = async (req: Request, res: Response) => {
+    static deletarInventario = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
 

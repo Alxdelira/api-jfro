@@ -5,7 +5,7 @@ import { buildQuery, getPaginationOptions } from "../services/queryOptions";
 
 
 export default class BensController {
-    static criarBem = async (req: Request, res: Response) => {
+    static criarBem = async (req: Request, res: Response): Promise<Response> => {
         try {
             const {
                 tombo,
@@ -47,7 +47,7 @@ export default class BensController {
         }
     }
 
-    static listarBens = async (req: Request, res: Response) => {
+    static listarBens = async (req: Request, res: Response): Promise<Response> => {
         try {
             const {
                 tombo,
@@ -79,7 +79,7 @@ export default class BensController {
         }
     }
 
-    static listarBemPorId = async (req: Request, res: Response) => {
+    static listarBemPorId = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
 
@@ -94,7 +94,7 @@ export default class BensController {
         }
     }
 
-    static atualizarBem = async (req: Request, res: Response) => {
+    static atualizarBem = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
             const { tombo, nome, condicao, ativo, uso, descricao, inventario, setor, auditor, responsavel, imagem }: IBem = req.body;
@@ -118,15 +118,15 @@ export default class BensController {
             if (responsavel) camposAtualizados.responsavel = responsavel;
             if (imagem) camposAtualizados.imagem = imagem;
 
-            const bemAtualizado = await BemModel.findByIdAndUpdate(id, camposAtualizados, { new: true });            
-           
+            const bemAtualizado = await BemModel.findByIdAndUpdate(id, camposAtualizados, { new: true });
+
             return res.status(200).json(bemAtualizado);
         } catch (error) {
             return res.status(500).json({ error, mensage: Http[500] });
         }
     }
 
-    static deletarBem = async (req: Request, res: Response) => {
+    static deletarBem = async (req: Request, res: Response): Promise<Response> => {
         try {
             const { id } = req.params;
 
@@ -142,6 +142,4 @@ export default class BensController {
             return res.status(500).json({ error, mensage: Http[500] });
         }
     }
-
-
 }

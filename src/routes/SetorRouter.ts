@@ -1,7 +1,7 @@
 import SetorController from "../controllers/SetorController";
-import { Router } from "express";
+import express, { Router } from "express";
 
-const router = Router();
+const router: Router = express.Router();
 
 router
 .post('/setor', SetorController.criarSetor)

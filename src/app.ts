@@ -3,7 +3,7 @@ import cors from 'cors';
 import db from './config/db_config';
 import routes from './routes/index';
 
-function connect_db() {
+function connect_db(): void {
     db.on('error', (error) => console.log(error));
     db.once('open', () => {
         console.log('Connected to database OK!');
