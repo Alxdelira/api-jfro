@@ -1489,12 +1489,12 @@ var swaggerOptions = {
     },
     servers: [
       {
-        url: `http://localhost:${process.env.PORT}`,
-        description: "API em desenvolvimento"
+        url: "api-jfro.vercel.app",
+        description: "API em produ\xE7\xE3o"
       },
       {
-        url: "https://api-jfro.com",
-        description: "API em produ\xE7\xE3o"
+        url: `http://localhost:${process.env.PORT}`,
+        description: "API em desenvolvimento"
       }
     ],
     components: {
