@@ -2449,7 +2449,7 @@ var swaggerOptions = {
     },
     servers: [
       {
-        url: "api-jfro.vercel.app",
+        url: "https://api-jfro.vercel.app",
         description: "API em produ\xE7\xE3o"
       },
       {
