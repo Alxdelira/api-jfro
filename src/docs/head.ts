@@ -33,7 +33,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "api-jfro.vercel.app",
+        url: "https://api-jfro.vercel.app",
         description: "API em produção",
       },
       {
