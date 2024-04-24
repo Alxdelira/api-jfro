@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsx watch server.ts",
     "dist": "tsup src",
-    "start": "npm run dist && node dist/server.js",
+    "start": "npm run dist && node dist/app.cjs",
     "build": "npm run dist"
   },
   "keywords": [],
