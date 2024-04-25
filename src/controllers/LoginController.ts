@@ -53,7 +53,7 @@ export default class LoginController {
                 return res.status(404).json(Http[404]);
             }
 
-          const token = crypto.randomBytes(20).toString('hex');
+            const token = crypto.randomBytes(20).toString('hex');
             const now = new Date();
             now.setHours(now.getHours() + 1);
 
@@ -77,10 +77,11 @@ export default class LoginController {
                     return res.status(400).json(Http[400]);
                 }
 
-                return res.status(200).json(Http[200]);                
-            }); 
+                return res.status(200).json(Http[200]);
+            });
 
-// https://www.youtube.com/watch?v=Zwdv9RllPqU&ab_channel=Rocketseat    <----- 22:00 min contiuar daqui
+            // https://www.youtube.com/watch?v=Zwdv9RllPqU&ab_channel=Rocketseat    <----- 22:00 min contiuar daqui
+            //https://mailtrap.io/inboxes/2825135/messages/4179150893  <----- link do email fake do mailTrap
         } catch (error) {
             return res.status(500).json(Http[500]);
         }
