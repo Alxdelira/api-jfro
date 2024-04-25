@@ -4,6 +4,8 @@ import bcrypt from "bcrypt";
 import Http from "../services/HttpStatus";
 import * as dotenv from 'dotenv';
 import jwt from "jsonwebtoken";
+import crypto from 'crypto';
+import mailer from "../config/mailer";
 
 interface LoginProps {
     email: string;
@@ -35,9 +37,54 @@ export default class LoginController {
                 expiresIn: "1h"
             });
 
-            return res.status(200).json({token, usuario: { nome: usuario.nome, email: usuario.email, matricula: usuario.matricula}});
+            return res.status(200).json({ token, usuario: { nome: usuario.nome, email: usuario.email, matricula: usuario.matricula } });
         } catch (error) {
             return res.status(500).json(Http[500]);
         }
     }
+
+    static esqueciSenha = async (req: Request, res: Response): Promise<Response> => {
+        try {
+            const { email }: LoginProps = req.body;
+
+            const usuario: IUsuario | null = await UsuarioModel.findOne({ email });
+
+            if (!usuario) {
+                return res.status(404).json(Http[404]);
+            }
+
+          const token = crypto.randomBytes(20).toString('hex');
+            const now = new Date();
+            now.setHours(now.getHours() + 1);
+
+            await UsuarioModel.findByIdAndUpdate(usuario._id, {
+                $set: {
+                    tokenRecuperaSenha: token,
+                    senhaExpireReset: now
+                }
+            });
+
+            console.log(token, now);
+
+            mailer.sendMail({
+                to: email,
+                from: "alx.delira@gmail.com",
+                template: "auth/esqueciAsenha",
+                context: { token },
+            }, (err) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(400).json(Http[400]);
+                }
+
+                return res.status(200).json(Http[200]);                
+            }); 
+
+// https://www.youtube.com/watch?v=Zwdv9RllPqU&ab_channel=Rocketseat    <----- 22:00 min contiuar daqui
+        } catch (error) {
+            return res.status(500).json(Http[500]);
+        }
+
+    }
+
 }
