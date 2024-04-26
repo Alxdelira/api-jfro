@@ -29,10 +29,10 @@
 
   <!-- project description and menu -->
   <p align="center">
-      Em Construção.
+      🛠️ Em Construção...
     <br />
     <a 
-      href="## Usage">
+      href="[## Usage](https://api-jfro.vercel.app/)">
       <strong>Go to usage now »</strong>
     </a>
     <br />
@@ -59,6 +59,7 @@
 
 ## 🔥 Features
 - [x] Autenticação de usuários para acesso seguro à API;
+- [x] Recuperação e alteração de senha via E-mail.
 - [x] Gerenciamento completo de usuários, incluindo adição, atualização, visualização e exclusão;
 - [x] Capacidade de armazenar e manipular imagens de ativos associadas aos itens do inventário;
 - [ ] Organização hierárquica de setores e sub-setores para uma gestão eficiente de inventários complexos;
