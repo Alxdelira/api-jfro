@@ -356,57 +356,25 @@ var loginPaths = {
               schema: {
                 type: "object",
                 properties: {
-                  data: {
-                    type: "array",
-                    example: "[]"
-                  },
-                  error: {
-                    type: "boolean",
-                    example: "true"
-                  },
-                  code: {
-                    type: "integer",
-                    example: "422"
-                  },
-                  message: {
-                    type: "string",
-                    example: HttpStatus_default[422]
-                  },
-                  errors: {
-                    type: "array",
-                    example: ["Usu\xE1rio ou senha incorretos!"]
-                  }
+                  type: "string",
+                  example: HttpStatus_default[422]
                 }
               }
             }
           }
-        },
-        422: {
-          description: "Erro ao validar o email",
-          content: {
-            "application/json": {
-              schema: {
-                type: "object",
-                properties: {
-                  data: {
-                    type: "array",
-                    example: "[]"
-                  },
-                  error: {
-                    type: "bollean",
-                    example: "true"
-                  },
-                  code: {
-                    type: "integer",
-                    example: "422"
-                  },
+        }
+      },
+      422: {
+        description: "Erro ao validar o email",
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                data: {
                   message: {
                     type: "string",
                     example: HttpStatus_default[422]
-                  },
-                  errors: {
-                    type: "array",
-                    example: ["Email no formato inv\xE1lido!"]
                   }
                 }
               }
@@ -420,25 +388,175 @@ var loginPaths = {
               schema: {
                 type: "object",
                 properties: {
-                  data: {
-                    type: "array",
-                    example: "[]"
-                  },
-                  error: {
-                    type: "bollean",
-                    example: "false"
-                  },
-                  code: {
-                    type: "integer",
-                    example: "500"
-                  },
                   message: {
                     type: "string",
                     example: HttpStatus_default[500]
-                  },
-                  errors: {
-                    type: "array",
-                    example: ["Vari\xE1vel Teste n\xE3o declarada!"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/resetsenha": {
+    post: {
+      tags: ["Recuperar Senha"],
+      description: "Esta fun\xE7\xE3o \xE9 respons\xE1vel por enviar um email para o usu\xE1rio recuperar a senha",
+      summary: "Recupera\xE7\xE3o de senha",
+      requestBody: {
+        required: true,
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                email: {
+                  type: "string",
+                  example: "alx.delira@gmail.com"
+                }
+              }
+            }
+          }
+        }
+      },
+      responses: {
+        200: {
+          description: "Email enviado com sucesso",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  message: {
+                    type: "string",
+                    example: "Email enviado com sucesso!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        404: {
+          description: "Usu\xE1rio n\xE3o encontrado",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  message: {
+                    type: "string",
+                    example: HttpStatus_default[404]
+                  }
+                }
+              }
+            }
+          }
+        },
+        500: {
+          description: "Erro interno",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  message: {
+                    type: "string",
+                    example: HttpStatus_default[500]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/alterarsenha": {
+    post: {
+      tags: ["Recuperar Senha"],
+      description: "Esta fun\xE7\xE3o \xE9 respons\xE1vel por alterar a senha do usu\xE1rio",
+      summary: "Altera\xE7\xE3o de senha",
+      parameters: [
+        {
+          name: "token",
+          in: "query",
+          description: "token de recupera\xE7\xE3o de senha",
+          required: true,
+          schema: {
+            type: "string"
+          }
+        },
+        {
+          name: "email",
+          in: "query",
+          description: "email do usu\xE1rio",
+          required: true,
+          schema: {
+            type: "string"
+          }
+        }
+      ],
+      requestBody: {
+        required: true,
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                senha: {
+                  type: "string",
+                  example: "Dev@1234"
+                }
+              }
+            }
+          }
+        }
+      },
+      responses: {
+        200: {
+          description: "Senha alterada com sucesso",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  message: {
+                    type: "string",
+                    example: HttpStatus_default[200]
+                  }
+                }
+              }
+            }
+          }
+        },
+        404: {
+          description: "Token inv\xE1lido",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  message: {
+                    type: "string",
+                    example: HttpStatus_default[404]
+                  }
+                }
+              }
+            }
+          }
+        },
+        500: {
+          description: "Erro interno",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  message: {
+                    type: "string",
+                    example: HttpStatus_default[500]
                   }
                 }
               }
@@ -1514,8 +1632,8 @@ var swaggerOptions = {
     ],
     tags: [
       { name: "Login", description: "Login do usu\xE1rio" },
+      { name: "Recuperar Senha", description: "Recupera\xE7\xE3o de senha" },
       { name: "Usu\xE1rios", description: "Opera\xE7\xF5es relacionadas aos usu\xE1rios" },
-      //{ name: "Recuperar senha", description: "Recuperação de senha" },
       { name: "Imagens", description: "Opera\xE7\xF5es relacionadas a imagens" },
       // { name: "Relatórios", description: "Relatórios do sistema" },
       { name: "Bens", description: "Itens do invent\xE1rio" },

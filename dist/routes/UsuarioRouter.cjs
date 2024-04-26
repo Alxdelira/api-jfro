@@ -106,6 +106,10 @@ var UsuarioSchema = new import_mongoose.default.Schema(
       index: true,
       select: false
     },
+    senhaExpireReset: {
+      type: Date,
+      select: false
+    },
     ativo: {
       type: Boolean,
       required: true,

@@ -70,7 +70,7 @@ __export(routes_exports, {
   default: () => routes_default
 });
 module.exports = __toCommonJS(routes_exports);
-var dotenv3 = __toESM(require("dotenv"), 1);
+var dotenv5 = __toESM(require("dotenv"), 1);
 
 // src/routes/UsuarioRouter.ts
 var import_express = __toESM(require("express"), 1);
@@ -107,6 +107,10 @@ var UsuarioSchema = new import_mongoose.default.Schema(
       type: String,
       trim: true,
       index: true,
+      select: false
+    },
+    senhaExpireReset: {
+      type: Date,
       select: false
     },
     ativo: {
@@ -324,11 +328,127 @@ var import_express2 = __toESM(require("express"), 1);
 
 // src/controllers/LoginController.ts
 var import_bcrypt2 = __toESM(require("bcrypt"), 1);
-var dotenv = __toESM(require("dotenv"), 1);
+var dotenv3 = __toESM(require("dotenv"), 1);
 var import_jsonwebtoken = __toESM(require("jsonwebtoken"), 1);
+var import_crypto = __toESM(require("crypto"), 1);
+
+// src/config/mailer_config.ts
+var import_nodemailer = __toESM(require("nodemailer"), 1);
+var dotenv = __toESM(require("dotenv"), 1);
 dotenv.config();
+function sendMail(infoEmail, res) {
+  return __async(this, null, function* () {
+    try {
+      function main() {
+        return __async(this, null, function* () {
+          let transporter = import_nodemailer.default.createTransport({
+            host: process.env.HOST_EMAIL,
+            port: process.env.PORT_EMAIL,
+            secure: false,
+            auth: {
+              user: process.env.USER_EMAIL,
+              pass: process.env.PASS_EMAIL
+            }
+          });
+          yield transporter.sendMail(infoEmail);
+        });
+      }
+      main().catch(console.error);
+    } catch (error) {
+      return res.status(500).json(HttpStatus_default[500]);
+    }
+  });
+}
+var mailer_config_default = sendMail;
+
+// src/services/templateMail.ts
+var dotenv2 = __toESM(require("dotenv"), 1);
+dotenv2.config();
+var templateMail = (token, email, nome) => {
+  const Logo = "https://github.com/Alxdelira/Alxdelira/blob/main/.github/assets/logo.png?raw=true";
+  return `
+    <html>
+        <head>
+            <style>
+                .container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    background-color: #f5f5f5;
+                }
+                .content {
+                    width: 50%;
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                .content h1 {
+                    text-align: center;
+                    color: #333;
+                }
+                .content p {
+                    text-align: center;
+                    color: #333;
+                }
+                .content a {
+                    display: block;
+                    text-align: center;
+                    color: #fff;
+                    background-color: #007bff;
+                    padding: 10px;
+                    border-radius: 5px;
+                    text-decoration: none;
+                }
+                .logo {
+                    display: block;
+                    margin: 0 auto;
+                    width: 300px;
+                }
+                .footer {
+                    display: block;
+                    margin: 0 auto;
+                    width: 100%;
+                    margin-top: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="content">
+                    <img class="logo" src="${Logo}" alt="Logo" />
+                    <h1>Recupera\xE7\xE3o de senha</h1>
+                    <p>Ol\xE1 ${nome}, voc\xEA solicitou a recupera\xE7\xE3o de senha!</p>
+                    <p>Clique no bot\xE3o abaixo para alterar sua senha</p>
+                    <a href="${process.env.FRONT_URL}alterarsenha?token=${token}&email=${email}">Recuperar senha</a>
+                    <img class="footer" src="https://raw.githubusercontent.com/Alxdelira/api-jfro/main/src/assets/footer.png" alt="Footer" />
+                </div>
+            </div>
+        </body>
+    </html>
+    `;
+};
+
+// src/controllers/LoginController.ts
+dotenv3.config();
 var secret = process.env.JWT_SECRET;
 var _LoginController = class _LoginController {
+  static alteraSenha(req, res) {
+    return __async(this, null, function* () {
+      try {
+        const { email } = req.query;
+        const { senha } = req.body;
+        yield UsuarioModel_default.findOneAndUpdate({ email }, {
+          senha: import_bcrypt2.default.hashSync(senha, 10),
+          tokenRecuperaSenha: null
+        });
+        res.status(200).json(HttpStatus_default[200]);
+      } catch (err) {
+        return res.status(500).json(HttpStatus_default[500]);
+      }
+    });
+  }
 };
 _LoginController.login = (req, res) => __async(_LoginController, null, function* () {
   try {
@@ -349,11 +469,42 @@ _LoginController.login = (req, res) => __async(_LoginController, null, function*
     return res.status(500).json(HttpStatus_default[500]);
   }
 });
+_LoginController.esqueciSenha = (req, res) => __async(_LoginController, null, function* () {
+  try {
+    const { email } = req.body;
+    const findUser = yield UsuarioModel_default.findOne({ email });
+    if (!findUser) {
+      return res.status(404).json(HttpStatus_default[404]);
+    }
+    const secret2 = process.env.JWT_SECRET || " ";
+    const token = import_jsonwebtoken.default.sign({ id: findUser == null ? void 0 : findUser._id, email: findUser == null ? void 0 : findUser.email, nome: findUser == null ? void 0 : findUser.nome }, secret2, {
+      expiresIn: process.env.EXPIREINRECUPERASENHA
+    });
+    if (!token) {
+      return res.status(500).json(HttpStatus_default[500]);
+    }
+    yield UsuarioModel_default.findByIdAndUpdate(findUser == null ? void 0 : findUser._id, {
+      $set: { tokenRecuperaSenha: token }
+    });
+    let info = {
+      from: '"Levantamento Patrimonial: Altera\xE7\xE3o de Senha " <' + process.env.USER_EMAIL + ">",
+      to: findUser == null ? void 0 : findUser.email,
+      subject: "Solicita\xE7\xE3o de recupera\xE7\xE3o de senha - Solicita\xE7\xE3o #" + import_crypto.default.randomBytes(6).toString("hex"),
+      html: templateMail(token, findUser == null ? void 0 : findUser.email, findUser == null ? void 0 : findUser.nome)
+    };
+    yield mailer_config_default(info, res).then(() => {
+      return res.status(200).json({ message: "Email enviado com sucesso!", token });
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(HttpStatus_default[500]);
+  }
+});
 var LoginController = _LoginController;
 
 // src/routes/LoginRouter.ts
 var router2 = import_express2.default.Router();
-router2.post("/login", LoginController.login);
+router2.post("/login", LoginController.login).post("/resetsenha", LoginController.esqueciSenha).post("/alterarsenha", LoginController.alteraSenha);
 var LoginRouter_default = router2;
 
 // src/models/SetorModel.ts
@@ -1019,7 +1170,7 @@ router6.post("/inventario", InventarioController.criarInventario).get("/inventar
 var InventarioRouter_default = router6;
 
 // src/routes/index.ts
-dotenv3.config();
+dotenv5.config();
 var routes = (app) => {
   app.route("/").get((req, res) => {
     res.status(200).redirect("/docs");
