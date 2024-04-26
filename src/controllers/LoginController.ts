@@ -5,13 +5,14 @@ import Http from "../services/HttpStatus";
 import * as dotenv from 'dotenv';
 import jwt from "jsonwebtoken";
 import crypto from 'crypto';
-import mailer from "../config/mailer";
+import sendMail from "../config/mailer_config";
 
 interface LoginProps {
     email: string;
     matricula: string;
     senha: string;
 }
+
 dotenv.config();
 
 const secret = process.env.JWT_SECRET as string;
@@ -43,49 +44,70 @@ export default class LoginController {
         }
     }
 
-    static esqueciSenha = async (req: Request, res: Response): Promise<Response> => {
+    static esqueciSenha = async (req: Request, res: Response) => {
         try {
-            const { email }: LoginProps = req.body;
 
-            const usuario: IUsuario | null = await UsuarioModel.findOne({ email });
+            const { email } = req.body;
 
-            if (!usuario) {
+            const findUser = await UsuarioModel.findOne({ email: email });
+
+            if (!findUser) {
                 return res.status(404).json(Http[404]);
             }
 
-            const token = crypto.randomBytes(20).toString('hex');
-            const now = new Date();
-            now.setHours(now.getHours() + 1);
-
-            await UsuarioModel.findByIdAndUpdate(usuario._id, {
-                $set: {
-                    tokenRecuperaSenha: token,
-                    senhaExpireReset: now
-                }
+            const secret: string  = process.env.JWT_SECRET || " ";
+            
+            const token = jwt.sign({ id: findUser?._id, email: findUser?.email, nome: findUser?.nome }, secret, {
+                expiresIn: process.env.EXPIREINRECUPERASENHA
             });
 
-            console.log(token, now);
+            if (!token) {
+                return res.status(500).json(Http[500]);
+            }
 
-            mailer.sendMail({
-                to: email,
-                from: "alx.delira@gmail.com",
-                template: "auth/esqueciAsenha",
-                context: { token },
-            }, (err) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(400).json(Http[400]);
-                }
+            await UsuarioModel.findByIdAndUpdate(findUser?._id, {
+                $set: { tokenRecuperaSenha: token }
+            });
 
+            let info = ({
+                from: "\"Levantamento Patrimonial: Alteração de Senha \"" + ' <' + (process.env.USER_EMAIL) + '>',
+                to: findUser?.email,
+                subject: "Solicitação de recuperação de senha - Solicitação #" + crypto.randomBytes(6).toString("hex"),
+                html: "Olá " + findUser?.nome + ", você solicitou a recuperação de senha! <br> <a href='" + (process.env.FRONT_URL + "alterarsenha?token=" + token + "&email=" + findUser?.email) + "'>Clique aqui para alterar sua senha!</a>",
+            });
+
+            await sendMail(info, res).then(() => {
                 return res.status(200).json(Http[200]);
             });
 
-            // https://www.youtube.com/watch?v=Zwdv9RllPqU&ab_channel=Rocketseat    <----- 22:00 min contiuar daqui
-            //https://mailtrap.io/inboxes/2825135/messages/4179150893  <----- link do email fake do mailTrap
-        } catch (error) {
+        } catch (err) {
+            console.log(err)
             return res.status(500).json(Http[500]);
         }
-
     }
+
+    static async alteraSenha(req: Request, res: Response) {
+        try {
+            const { email } = req.query;
+            const { senha } = req.body;
+
+            await UsuarioModel.findOneAndUpdate({ email: email as string }, {
+                senha: bcrypt.hashSync(senha, 10),
+                tokenRecuperaSenha: null
+            });
+
+            res.status(200).json({
+                data: [],
+                error: false,
+                code: 200,
+                message: "Senha atualizada com sucesso!",
+                errors: []
+            });
+
+        } catch (err) {
+            return res.status(500).json(Http[500]);
+        }
+    }
+
 
 }
