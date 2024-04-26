@@ -54,7 +54,7 @@ export const loginPaths = {
                                                 example: "RO007"
                                             }
                                         }
-                                    },
+                                    }
                                 }
                             }
                         }
@@ -67,9 +67,8 @@ export const loginPaths = {
                             schema: {
                                 type: "object",
                                 properties: {
-                                        type: "string",
-                                        example: Http[422]
-                                    }
+                                    type: "string",
+                                    example: Http[422]
                                 }
                             }
                         }
@@ -83,15 +82,15 @@ export const loginPaths = {
                                 type: "object",
                                 properties: {
                                     data: {
-                                    message: {
-                                        type: "string",
-                                        example: Http[422]
+                                        message: {
+                                            type: "string",
+                                            example: Http[422]
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-
                 },
                 500: {
                     description: "Erro interno",
@@ -109,6 +108,7 @@ export const loginPaths = {
                         }
                     }
                 }
+
             }
         }
     },
