@@ -76,7 +76,6 @@
 
 This project was developed with the following technologies:
 
-- `nodemon`: [nodemon on GitHub](https://github.com/remy/nodemon)
 - `typescript`: [TypeScript on GitHub](https://github.com/microsoft/TypeScript)
 - `bcrypt`: [bcrypt.js on GitHub](https://github.com/dcodeIO/bcrypt.js)
 - `cors`: [npm cors](https://www.npmjs.com/package/cors)
@@ -89,6 +88,7 @@ This project was developed with the following technologies:
 - `Swagger`: [swagger-UI on  GitHub](https://github.com/swagger-api/swagger-ui)
 - `Multer`: [Express.Js - multer](https://github.com/expressjs/multer)
 - `Mongo DB Atlas`: [MongoDB - Atlas](https://www.mongodb.com/pt-br)
+- `NodeMailer`: [NodeMailer](https://www.nodemailer.com/)
 
 
 

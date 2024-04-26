@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv';
 import jwt from "jsonwebtoken";
 import crypto from 'crypto';
 import sendMail from "../config/mailer_config";
+import { templateMail } from "../services/templateMail";
 
 interface LoginProps {
     email: string;
@@ -73,11 +74,11 @@ export default class LoginController {
                 from: "\"Levantamento Patrimonial: Alteração de Senha \"" + ' <' + (process.env.USER_EMAIL) + '>',
                 to: findUser?.email,
                 subject: "Solicitação de recuperação de senha - Solicitação #" + crypto.randomBytes(6).toString("hex"),
-                html: "Olá " + findUser?.nome + ", você solicitou a recuperação de senha! <br> <a href='" + (process.env.FRONT_URL + "alterarsenha?token=" + token + "&email=" + findUser?.email) + "'>Clique aqui para alterar sua senha!</a>",
+                html: templateMail(token, findUser?.email, findUser?.nome)
             });
 
             await sendMail(info, res).then(() => {
-                return res.status(200).json(Http[200]);
+                return res.status(200).json({ message: "Email enviado com sucesso!", token: token });
             });
 
         } catch (err) {
@@ -96,13 +97,7 @@ export default class LoginController {
                 tokenRecuperaSenha: null
             });
 
-            res.status(200).json({
-                data: [],
-                error: false,
-                code: 200,
-                message: "Senha atualizada com sucesso!",
-                errors: []
-            });
+            res.status(200).json(Http[200]);
 
         } catch (err) {
             return res.status(500).json(Http[500]);
