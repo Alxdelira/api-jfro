@@ -40,6 +40,10 @@ const UsuarioSchema: Schema = new mongoose.Schema({
         index: true,
         select: false
     },
+    senhaExpireReset: {
+        type: Date,
+        select: false
+    },
     ativo: {
         type: Boolean,
         required: true,

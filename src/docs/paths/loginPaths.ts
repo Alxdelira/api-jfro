@@ -67,25 +67,8 @@ export const loginPaths = {
                             schema: {
                                 type: "object",
                                 properties: {
-                                    data: {
-                                        type: "array",
-                                        example: "[]"
-                                    },
-                                    error: {
-                                        type: "boolean",
-                                        example: "true"
-                                    },
-                                    code: {
-                                        type: "integer",
-                                        example: "422"
-                                    },
-                                    message: {
                                         type: "string",
                                         example: Http[422]
-                                    },
-                                    errors: {
-                                        type: "array",
-                                        example: ["Usuário ou senha incorretos!"]
                                     }
                                 }
                             }
@@ -100,24 +83,9 @@ export const loginPaths = {
                                 type: "object",
                                 properties: {
                                     data: {
-                                        type: "array",
-                                        example: "[]"
-                                    },
-                                    error: {
-                                        type: "bollean",
-                                        example: "true"
-                                    },
-                                    code: {
-                                        type: "integer",
-                                        example: "422"
-                                    },
                                     message: {
                                         type: "string",
                                         example: Http[422]
-                                    },
-                                    errors: {
-                                        type: "array",
-                                        example: ["Email no formato inválido!"]
                                     }
                                 }
                             }
@@ -132,25 +100,176 @@ export const loginPaths = {
                             schema: {
                                 type: "object",
                                 properties: {
-                                    data: {
-                                        type: "array",
-                                        example: "[]"
-                                    },
-                                    error: {
-                                        type: "bollean",
-                                        example: "false"
-                                    },
-                                    code: {
-                                        type: "integer",
-                                        example: "500"
-                                    },
                                     message: {
                                         type: "string",
                                         example: Http[500]
-                                    },
-                                    errors: {
-                                        type: "array",
-                                        example: ["Variável Teste não declarada!"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/resetsenha": {
+        post: {
+            tags: ["Recuperar Senha"],
+            description: "Esta função é responsável por enviar um email para o usuário recuperar a senha",
+            summary: "Recuperação de senha",
+            requestBody: {
+                required: true,
+                content: {
+                    "application/json": {
+                        schema: {
+                            type: "object",
+                            properties: {
+                                email: {
+                                    type: "string",
+                                    example: "alx.delira@gmail.com",
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            responses: {
+                200: {
+                    description: "Email enviado com sucesso",
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    message: {
+                                        type: "string",
+                                        example: "Email enviado com sucesso!"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                404: {
+                    description: "Usuário não encontrado",
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    message: {
+                                        type: "string",
+                                        example: Http[404]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                500: {
+                    description: "Erro interno",
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    message: {
+                                        type: "string",
+                                        example: Http[500]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/alterarsenha": {
+        post: {
+            tags: ["Recuperar Senha"],
+            description: "Esta função é responsável por alterar a senha do usuário",
+            summary: "Alteração de senha",
+            parameters: [
+                {
+                    name: "token",
+                    in: "query",
+                    description: "token de recuperação de senha",
+                    required: true,
+                    schema: {
+                        type: "string"
+                    }
+                },
+                {
+                    name: "email",
+                    in: "query",
+                    description: "email do usuário",
+                    required: true,
+                    schema: {
+                        type: "string"
+                    }
+                }
+            ],
+
+            requestBody: {
+                required: true,
+                content: {
+                    "application/json": {
+                        schema: {
+                            type: "object",
+                            properties: {
+                                senha: {
+                                    type: "string",
+                                    example: "Dev@1234"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            responses: {
+                200: {
+                    description: "Senha alterada com sucesso",
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    message: {
+                                        type: "string",
+                                        example: Http[200]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                404: {
+                    description: "Token inválido",
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    message: {
+                                        type: "string",
+                                        example: Http[404]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                500: {
+                    description: "Erro interno",
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    message: {
+                                        type: "string",
+                                        example: Http[500]
                                     }
                                 }
                             }
@@ -160,5 +279,6 @@ export const loginPaths = {
             }
         }
     }
+
 };
 

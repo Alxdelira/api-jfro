@@ -64,8 +64,8 @@ const swaggerOptions = {
     ],
     tags: [
       { name: "Login", description: "Login do usuário" },
-      { name: "Usuários", description: "Operações relacionadas aos usuários" },
-      //{ name: "Recuperar senha", description: "Recuperação de senha" },
+      { name: "Recuperar Senha", description: "Recuperação de senha" },
+      { name: "Usuários", description: "Operações relacionadas aos usuários" },   
       { name: "Imagens", description: "Operações relacionadas a imagens" },
       // { name: "Relatórios", description: "Relatórios do sistema" },
       { name: "Bens", description: "Itens do inventário" },
