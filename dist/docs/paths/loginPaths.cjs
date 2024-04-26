@@ -159,25 +159,9 @@ var loginPaths = {
               schema: {
                 type: "object",
                 properties: {
-                  type: "string",
-                  example: HttpStatus_default[422]
-                }
-              }
-            }
-          }
-        },
-        422: {
-          description: "Erro ao validar o email",
-          content: {
-            "application/json": {
-              schema: {
-                type: "object",
-                properties: {
-                  data: {
-                    message: {
-                      type: "string",
-                      example: HttpStatus_default[422]
-                    }
+                  message: {
+                    type: "string",
+                    example: "Erro ao validar o login"
                   }
                 }
               }
@@ -193,7 +177,7 @@ var loginPaths = {
                 properties: {
                   message: {
                     type: "string",
-                    example: HttpStatus_default[500]
+                    example: "Erro interno no servidor"
                   }
                 }
               }
@@ -203,6 +187,7 @@ var loginPaths = {
       }
     }
   },
+  // parte de recuperação de senha
   "/resetsenha": {
     post: {
       tags: ["Recuperar Senha"],
