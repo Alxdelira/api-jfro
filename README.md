@@ -32,7 +32,7 @@
       🛠️ Em Construção...
     <br />
     <a 
-      href="[## Usage](https://api-jfro.vercel.app/)">
+      href="https://api-jfro.vercel.app/">
       <strong>Go to usage now »</strong>
     </a>
     <br />
