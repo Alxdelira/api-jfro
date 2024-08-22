@@ -1,96 +1,38 @@
-## Exemplo de Relatório de Bug
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
-**Projeto:** API de Inventário
+---
 
-**Versão:** 1.0.0
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-**Data:** 25 de abril de 2024
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-**Reporter:** Bard
+**Expected behavior**
+A clear and concise description of what you expected to happen.
 
-**Email:** [endereço de e-mail ]
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
 
-**Descrição:**
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
 
-Estava testando a API e encontrei o seguinte bug:
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
 
-**Passos para Reproduzir:**
-
-1. Acesse o endpoint `/items`.
-2. Envie uma requisição POST com o seguinte corpo JSON:
-
-```json
-{
-  "nome": "Meu Item",
-  "descrição": "Este é o meu item.",
-  "quantidade": 1,
-  "setor": "12345",
-  "imagem": "https://example.com/image.jpg"
-}
-```
-
-3. A API deve retornar um código de status 201 (Criado).
-4. No entanto, a API está retornando um código de status 500 (Erro Interno do Servidor).
-
-**Comportamento Esperado:**
-
-A API deve retornar um código de status 201 (Criado) e criar um novo item no inventário.
-
-**Comportamento Atual:**
-
-A API retorna um código de status 500 (Erro Interno do Servidor) e não cria um novo item no inventário.
-
-**Observações Adicionais:**
-
-Tentei com diferentes valores para os campos `nome`, `descrição`, `quantidade`, `setor` e `imagem`, mas o problema persiste.
-
-**Impacto:**
-
-Este bug impede que usuários criem novos itens no inventário.
-
-**Prioridade:**
-
-Alta
-
-**Gravidade:**
-
-Crítica
-
-**Solução Proposta:**
-
-Acredito que o problema esteja em um erro no código que manipula a criação de novos itens. Recomendo que os desenvolvedores investiguem esse problema e corrijam o bug o mais rápido possível.
-
-**Solução Alternativa:**
-
-No momento, não há solução alternativa para este bug.
-
-**Capturas de Tela:**
-
-Captura de tela da mensagem de erro: [https://es.wiktionary.org/wiki/removido](https://es.wiktionary.org/wiki/removido)
-
-**Informações Adicionais:**
-
-Estou usando as seguintes ferramentas para testar a API:
-
-* Postman
-* Insomnia
-* Swaggwe (Documentação)
-
-A API está rodando no seguinte ambiente:
-
-* Node.js 20.11.0
-* Express 4.19.2
-* Mongoose 8.3.1
-
-Espero que esta informação seja útil. Por favor, me avise se tiver alguma dúvida.
-
-## Notas Adicionais
-
-* Adicionei uma seção sobre "Solução Proposta" ao relatório de bug. Esta seção fornece uma possível solução para o problema.
-* Adicionei uma seção sobre "Solução Alternativa" ao relatório de bug. Esta seção fornece uma solução temporária para o problema até que o bug seja corrigido.
-* Adicionei uma seção sobre "Capturas de Tela" ao relatório de bug. Esta seção fornece evidência visual do problema.
-* Adicionei uma seção sobre "Informações Adicionais" ao relatório de bug. Esta seção fornece detalhes adicionais sobre o ambiente e as ferramentas que estou usando para testar a API.
-
-Acredito que este relatório de bug está completo e abrangente. Por favor, me avise se tiver alguma outra dúvida.
-
-**Obrigado pelo seu tempo e atenção a este assunto.**
+**Additional context**
+Add any other context about the problem here.
